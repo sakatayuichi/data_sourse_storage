@@ -6,37 +6,38 @@ public class HomeModel02 implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String name,first,starttime,endtime;
+	private String starttimehour,endtimehour,starttimeminute,endtimeminute;
 
-	public String getName() {
-		return name;
+
+	public String getstarttimehour() {
+		return starttimehour;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setstarttimehour(String starttimehour) {
+		this.starttimehour = starttimehour;
 	}
 
-	public String getFirst() {
-		return first;
+	public String getendtimehour() {
+		return endtimehour;
 	}
 
-	public void setFirst(String first) {
-		this.first = first;
+	public void setendtimehour(String endtimehour) {
+		this.endtimehour = endtimehour;
 	}
 
-	public String getstarttime() {
-		return starttime;
+	public String getstarttimeminute() {
+		return starttimeminute;
 	}
 
-	public void setstarttime(String starttime) {
-		this.starttime = starttime;
+	public void setstarttimeminute(String starttimeminute) {
+		this.starttimeminute = starttimeminute;
 	}
 
-	public String getendtime() {
-		return endtime;
+	public String getendtimeminute() {
+		return endtimeminute;
 	}
 
-	public void setendtime(String endtime) {
-		this.endtime = endtime;
+	public void setendtimeminute(String endtimeminute) {
+		this.endtimeminute = endtimeminute;
 	}
 }

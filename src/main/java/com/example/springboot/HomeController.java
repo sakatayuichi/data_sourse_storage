@@ -25,31 +25,25 @@ public class HomeController {
 		Calendar calendarstart = Calendar.getInstance();
 		Calendar calendarend = Calendar.getInstance();
 		Calendar calendarutc = Calendar.getInstance();
-		SimpleDateFormat sdf1 = new SimpleDateFormat("HH");
+		//勤務時間のフォーマットをHH:mmに整える
+		SimpleDateFormat workinghours = new SimpleDateFormat("HH:mm");
 		String ans;
 		calendarstart.set(2016,0,01,00, 00);
 		calendarend.set(2016,0,01,00, 00);
 		//始業時間
-		calendarstart.add(Calendar.HOUR_OF_DAY, Integer.parseInt(bean.getstarttime()));
+		calendarstart.add(Calendar.HOUR_OF_DAY, Integer.parseInt(bean.getstarttimehour()));
+		calendarstart.add(Calendar.MINUTE, Integer.parseInt(bean.getstarttimeminute()));
 		//終業時間
-		calendarend.add(Calendar.HOUR_OF_DAY, Integer.parseInt(bean.getendtime()));
+		calendarend.add(Calendar.HOUR_OF_DAY, Integer.parseInt(bean.getendtimehour()));
+		calendarend.add(Calendar.MINUTE, Integer.parseInt(bean.getendtimeminute()));
 		//勤務時間の割り出し
 		long worktime = calendarend.getTimeInMillis() - calendarstart.getTimeInMillis() -calendarutc.getTimeZone().getRawOffset();
 
 
 		List<String> list = new ArrayList<String>();
-		//POSTするデータの作成
 
-		//list.add(ans);
 
-		//list.add("太宰");
-		//list.add("夏目");
-		//リクエストされたJSON形式のデータを配列に挿入
-		//list.add(bean.getName());
-		//list.add(bean.getFirst());
-		//System.out.println(list);
-
-		ans = sdf1.format(worktime);
+		ans = workinghours.format(worktime);
 		list.add(ans);
 		return list;
 
