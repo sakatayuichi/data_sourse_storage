@@ -35,16 +35,7 @@ public class HomeController {
 		calendarend.add(Calendar.HOUR_OF_DAY, Integer.parseInt(bean.getendtime()));
 		//勤務時間の割り出し
 		long worktime = calendarend.getTimeInMillis() - calendarstart.getTimeInMillis() -calendarutc.getTimeZone().getRawOffset();
-		/*
-		//演算処理の追加
-		int x,y,z;
 
-
-		x = Integer.parseInt(bean.getName());
-		y = Integer.parseInt(bean.getFirst());
-		z = x + y;
-		ans = String.valueOf(z);
-		 */
 
 		List<String> list = new ArrayList<String>();
 		//POSTするデータの作成
