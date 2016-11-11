@@ -6,38 +6,38 @@ public class HomeModel02 implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String starttimehour,endtimehour,starttimeminute,endtimeminute;
+	private String StartTimeHour,EndTimeHour,StartTimeMinute,EndTimeMinute;
 
 
-	public String getstarttimehour() {
-		return starttimehour;
+	public String getStartTimeHour() {
+		return StartTimeHour;
 	}
 
-	public void setstarttimehour(String starttimehour) {
-		this.starttimehour = starttimehour;
+	public void setStartTimeHour(String StartTimeHour) {
+		this.StartTimeHour = StartTimeHour;
 	}
 
-	public String getendtimehour() {
-		return endtimehour;
+	public String getEndTimeHour() {
+		return EndTimeHour;
 	}
 
-	public void setendtimehour(String endtimehour) {
-		this.endtimehour = endtimehour;
+	public void setEndTimeHour(String EndTimeHour) {
+		this.EndTimeHour = EndTimeHour;
 	}
 
-	public String getstarttimeminute() {
-		return starttimeminute;
+	public String getStartTimeMinute() {
+		return StartTimeMinute;
 	}
 
-	public void setstarttimeminute(String starttimeminute) {
-		this.starttimeminute = starttimeminute;
+	public void setStartTimeMinute(String StartTimeMinute) {
+		this.StartTimeMinute = StartTimeMinute;
 	}
 
-	public String getendtimeminute() {
-		return endtimeminute;
+	public String getEndTimeMinute() {
+		return EndTimeMinute;
 	}
 
-	public void setendtimeminute(String endtimeminute) {
-		this.endtimeminute = endtimeminute;
+	public void setEndTimeMinute(String EndTimeMinute) {
+		this.EndTimeMinute = EndTimeMinute;
 	}
 }

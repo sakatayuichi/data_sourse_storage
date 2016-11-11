@@ -22,29 +22,44 @@ public class HomeController {
 			produces="application/json;charset=UTF-8")	//メソッドに紐付いたURLの宣言,JSONデータを選別
 	@ResponseBody				//JSONを返却する宣言
 	public List<String> top(@RequestBody HomeModel02 bean) {				//beanインスタンスにJSONデータがマッピングされる
-		Calendar calendarstart = Calendar.getInstance();
-		Calendar calendarend = Calendar.getInstance();
-		Calendar calendarutc = Calendar.getInstance();
+		Calendar CalendarStart = Calendar.getInstance();
+		Calendar CalendarEnd = Calendar.getInstance();
+		Calendar CalendarUtc = Calendar.getInstance();
+		CalculateBusinessClass Calculate = new CalculateBusinessClass();
+		List<String> list = new ArrayList<String>();
+
 		//勤務時間のフォーマットをHH:mmに整える
 		SimpleDateFormat workinghours = new SimpleDateFormat("HH:mm");
 		String ans;
-		calendarstart.set(2016,0,01,00, 00);
-		calendarend.set(2016,0,01,00, 00);
+		long WorkTime,OverTime;
+		CalendarStart.set(2016,0,01,00,00);
+		CalendarEnd.set(2016,0,01,00,00);
+
 		//始業時間
-		calendarstart.add(Calendar.HOUR_OF_DAY, Integer.parseInt(bean.getstarttimehour()));
-		calendarstart.add(Calendar.MINUTE, Integer.parseInt(bean.getstarttimeminute()));
+		CalendarStart.add(Calendar.HOUR_OF_DAY, Integer.parseInt(bean.getStartTimeHour()));
+		CalendarStart.add(Calendar.MINUTE, Integer.parseInt(bean.getStartTimeMinute()));
 		//終業時間
-		calendarend.add(Calendar.HOUR_OF_DAY, Integer.parseInt(bean.getendtimehour()));
-		calendarend.add(Calendar.MINUTE, Integer.parseInt(bean.getendtimeminute()));
+		CalendarEnd.add(Calendar.HOUR_OF_DAY, Integer.parseInt(bean.getEndTimeHour()));
+		CalendarEnd.add(Calendar.MINUTE, Integer.parseInt(bean.getEndTimeMinute()));
 		//勤務時間の割り出し
-		long worktime = calendarend.getTimeInMillis() - calendarstart.getTimeInMillis() -calendarutc.getTimeZone().getRawOffset();
+		WorkTime = Calculate.WORKTIME(CalendarStart, CalendarEnd, CalendarUtc.getTimeZone().getRawOffset());
+		//long worktime = calendarend.getTimeInMillis() - calendarstart.getTimeInMillis() -calendarutc.getTimeZone().getRawOffset();
+		//時間外労働時間の割り出し
+		OverTime = Calculate.OVERTIME(bean.getEndTimeHour(), bean.getEndTimeMinute());
+		/*
+		if(Integer.parseInt(bean.getendtimehour()) >= 19){
+			calendarover.add(Calendar.HOUR_OF_DAY, Integer.parseInt(bean.getendtimehour()) - 19);
+			calendarover.add(Calendar.MINUTE, Integer.parseInt(bean.getendtimeminute()));
+		}else{
+			calendarover.add(Calendar.HOUR_OF_DAY, 0);
+			calendarover.add(Calendar.MINUTE, 0);
+		}*/
 
-
-		List<String> list = new ArrayList<String>();
-
-
-		ans = workinghours.format(worktime);
-		list.add(ans);
+		//リストに追加
+		ans = workinghours.format(WorkTime);
+		list.add("勤務時間 : " + ans);
+		ans = workinghours.format(OverTime);
+		list.add("時間外労働時間 : " + ans);
 		return list;
 
 	}
